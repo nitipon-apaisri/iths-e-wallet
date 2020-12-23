@@ -11,7 +11,13 @@
         </div>
       </article>
       <article class="card-stack">
-        <CardStack :card="Cards[this.position]" />
+        <!-- <CardStack :card="Cards[this.position]" /> -->
+        <Card
+          v-for="(card, index) in Cards"
+          :key="index"
+          :card="Cards[index]"
+          @actived="actived(index)"
+        />
       </article>
       <div class="btn">
         <router-link to="AddCard" class="to-add-card-btn">
@@ -25,23 +31,29 @@
 <script>
 import Top from "../components/Top";
 import Card from "../components/Card";
-import CardStack from "../components/CardStack";
+// import CardStack from "../components/CardStack";
 export default {
   data() {
     return {
       title: "e-wallet",
-      position: localStorage.getItem("position"),
+      position: 1,
     };
   },
   methods: {
-    actived() {
-      console.log("index");
+    // actived() {
+    //   console.log("index");
+    // },
+    actived(index) {
+      // localStorage.setItem("position", index);
+      // this.$router.go(0);
+      this.position = index;
+      console.log(this.position);
     },
   },
   components: {
     Top,
     Card,
-    CardStack,
+    // CardStack,
   },
   computed: {
     Cards() {

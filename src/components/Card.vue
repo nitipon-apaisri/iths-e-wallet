@@ -7,13 +7,13 @@
     <div class="top-card">
       <img src="../assets/chip-light.svg" alt="chip" class="chip-card" />
       <img
-        v-bind:src="require('../assets/vendor-' + img + '.svg')"
+        v-bind:src="require('../assets/vendor-' + card.img + '.svg')"
         alt="logo"
         class="logo"
       />
     </div>
     <div class="middle-card">
-      <h2 :style="{ color: card.textColor }">{{ cardNumber }}</h2>
+      <h2 :style="{ color: card.textColor }">{{ card.number }}</h2>
     </div>
     <div class="bottom-card">
       <div class="cardholder-name">
@@ -40,12 +40,12 @@
 
 <script>
 export default {
-  data() {
-    return {
-      img: this.card.img,
-      cardNumber: this.card.number,
-    };
-  },
+  // data() {
+  //   return {
+  //     img: this.card.img,
+  //     cardNumber: this.card.number,
+  //   };
+  // },
   props: {
     card: Object,
   },
