@@ -1,54 +1,102 @@
 <template>
-  <form class="submit-card">
-    <label for="card-number">card number</label>
+  <form class="submit-card" @submit.prevent="send" ref="form">
+    <label for="cardNumber">card number</label>
     <the-mask
       mask="#### #### #### ####"
       type="text"
-      name="card-number"
+      name="cardNumber"
       class="card-number"
       placeholder="XXXXXXXXXXXXXXXX"
     />
-    <label for="cardholder-name">cardholder name</label>
+    <label for="cardholderName">cardholder name</label>
     <input
       type="text"
-      name="cardholder-name"
+      name="cardholderName"
       class="cardholder-name"
       placeholder="FULL NAME"
     />
     <div class="valid-cvc">
       <div class="valid-part">
-        <label for="valid" class="valid-label">Valid</label>
-        <the-mask
-          mask="##/##"
-          type="text"
-          name="valid"
-          class="valid"
-          placeholder="MM/YY"
-        />
+        <label for="validMonth" class="valid-label">Valid</label>
+        <div class="valid-input">
+          <the-mask
+            mask="##"
+            type="text"
+            name="validMonth"
+            class="valid"
+            placeholder="MM"
+          />
+          <the-mask
+            mask="##"
+            type="text"
+            name="validYear"
+            class="valid"
+            placeholder="YY"
+          />
+        </div>
       </div>
       <div class="cvc-part">
         <label for="cvc" class="cvc-label">cvc</label>
         <the-mask
           mask="###"
           type="text"
-          name="valid"
+          name="cvc"
           class="valid"
           placeholder="XXX"
         />
       </div>
     </div>
-    <select>
-      <option value="0">Bitcoin</option>
-      <option value="1">Ninja</option>
-      <option value="2">Blockchain</option>
-      <option value="3">Evil</option>
+    <select name="vendor">
+      <option value="bitcoin">Bitcoin</option>
+      <option value="ninja">Ninja</option>
+      <option value="blockchain">Blockchain</option>
+      <option value="evil">Evil</option>
     </select>
     <button>ADD CARD</button>
   </form>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      card: {
+        holder: "",
+        vendor: "",
+        number: "",
+        validMonth: "",
+        validYear: "",
+        bgColor: "",
+        textColor: "#ECE6DF",
+        img: "",
+      },
+    };
+  },
+  methods: {
+    send() {
+      this.card.number = this.$refs.form.cardNumber.value;
+      this.card.holder = this.$refs.form.cardholderName.value;
+      this.card.validMonth = this.$refs.form.validMonth.value;
+      this.card.validYear = this.$refs.form.validYear.value;
+      this.card.vendor = this.$refs.form.vendor.value;
+      this.card.img = this.$refs.form.vendor.value;
+      if (this.$refs.form.vendor.value == "bitcoin") {
+        this.card.bgColor = "#F9B449";
+        this.card.textColor = "#2c3e50";
+      }
+      if (this.$refs.form.vendor.value == "evil") {
+        this.card.bgColor = "#DF2E4C";
+      }
+      if (this.$refs.form.vendor.value == "blockchain") {
+        this.card.bgColor = "#8050E5";
+      }
+      if (this.$refs.form.vendor.value == "ninja") {
+        this.card.bgColor = "#3F3F3F";
+      }
+      console.log(this.card);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -71,12 +119,25 @@ form {
   }
   .for-valid-cvc {
     display: flex;
-    text-align: justify;
     justify-content: space-between;
   }
 
   .valid-cvc {
     @extend .for-valid-cvc;
+    .valid-part {
+      width: 49%;
+      text-align: left;
+      .valid-input {
+        @extend .for-valid-cvc;
+        input {
+          width: 35%;
+        }
+      }
+    }
+    .cvc-part {
+      text-align: left;
+      width: 49%;
+    }
   }
   select {
     border-radius: 4px;
@@ -89,7 +150,7 @@ form {
     border-radius: 6px;
     margin-top: 20px;
     padding: 15px;
-    border: none;
+    border: 1px solid #000;
   }
   button:hover {
     cursor: pointer;

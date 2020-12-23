@@ -57,15 +57,12 @@ export default {
 <style lang="scss" scoped>
 .container {
   header {
-    max-width: 250px;
+    max-width: 220px;
     margin: auto;
   }
   main {
     max-width: 375px;
     margin: auto;
-    .default-card {
-      margin-top: 170px;
-    }
   }
 }
 </style>öö

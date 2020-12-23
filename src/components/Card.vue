@@ -58,7 +58,6 @@ section.card {
   padding: 18px;
   border-radius: 10px;
   margin: auto;
-  margin-top: -160px;
   overflow: overlay;
   max-width: 312px;
   height: 170px;

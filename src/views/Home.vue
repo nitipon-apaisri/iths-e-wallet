@@ -36,13 +36,10 @@ export default {
   data() {
     return {
       title: "e-wallet",
-      position: 1,
+      position: 0,
     };
   },
   methods: {
-    // actived() {
-    //   console.log("index");
-    // },
     actived(index) {
       // localStorage.setItem("position", index);
       // this.$router.go(0);
@@ -69,13 +66,16 @@ export default {
     max-width: 375px;
     margin: auto;
     .active-card {
-      .the-card {
-        margin-top: 170px;
+      h6 {
+        margin: 0 0 5px 0;
       }
     }
     .card-stack {
       margin-top: 200px;
       margin-bottom: 50px;
+      /deep/ .card {
+        margin-top: -160px;
+      }
     }
     .btn {
       display: flex;
@@ -96,6 +96,7 @@ export default {
         background-color: #000;
         border: none;
         color: aliceblue;
+        transition: 200ms;
         cursor: pointer;
       }
     }
