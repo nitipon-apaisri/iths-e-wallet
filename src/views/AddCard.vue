@@ -115,18 +115,22 @@ export default {
       this.DefaultCard.holder = this.$refs.form.cardholderName.value;
       this.DefaultCard.validMonth = this.$refs.form.validMonth.value;
       this.DefaultCard.validYear = this.$refs.form.validYear.value;
+      this.DefaultCard.img = this.$refs.form.vendor.value;
       if (this.$refs.form.vendor.value == "bitcoin") {
         this.DefaultCard.bgColor = "#F9B449";
         this.DefaultCard.textColor = "#2c3e50";
       }
       if (this.$refs.form.vendor.value == "evil") {
         this.DefaultCard.bgColor = "#DF2E4C";
+        this.DefaultCard.textColor = "#ECE6DF";
       }
       if (this.$refs.form.vendor.value == "blockchain") {
         this.DefaultCard.bgColor = "#8050E5";
+        this.DefaultCard.textColor = "#ECE6DF";
       }
       if (this.$refs.form.vendor.value == "ninja") {
         this.DefaultCard.bgColor = "#3F3F3F";
+        this.DefaultCard.textColor = "#ECE6DF";
       }
       if (
         this.$refs.form.cardNumber.value.length == 0 ||
