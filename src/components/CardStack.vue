@@ -4,7 +4,7 @@
       v-for="(card, index) in Cards"
       :key="index"
       :card="Cards[index]"
-      @actived="actived(index)"
+      @click="$emit('actived')"
     />
   </div>
 </template>
@@ -18,7 +18,6 @@ export default {
   methods: {
     actived(index) {
       localStorage.setItem("position", index);
-      this.$router.go(0);
     },
   },
   computed: {
