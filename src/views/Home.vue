@@ -40,6 +40,9 @@ export default {
     };
   },
   methods: {
+    test() {
+      console.log("test");
+    },
     actived(index) {
       // localStorage.setItem("position", index);
       // this.$router.go(0);
