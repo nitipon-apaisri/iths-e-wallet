@@ -9,7 +9,7 @@
       </section>
       <section class="add-card-form">
         <!-- <Form /> -->
-        <form class="submit-card" @submit="send" ref="form">
+        <form class="submit-card" @submit.prevent="send" ref="form">
           <label for="cardNumber">card number</label>
           <the-mask
             mask="#### #### #### ####"
@@ -64,7 +64,7 @@
           </select>
           <button>ADD CARD</button>
         </form>
-        <button class="preview-btn" @click="test">PREVIEW CARD</button>
+        <button class="preview-btn" @click="preview">PREVIEW CARD</button>
       </section>
       <router-link to="/">back</router-link>
     </main>
@@ -108,9 +108,6 @@ export default {
   // },
   methods: {
     send() {
-      console.log("Sent!");
-    },
-    test() {
       this.DefaultCard.number = this.$refs.form.cardNumber.value;
       this.DefaultCard.holder = this.$refs.form.cardholderName.value;
       this.DefaultCard.validMonth = this.$refs.form.validMonth.value;
@@ -146,7 +143,50 @@ export default {
         this.DefaultCard.validMonth = "MM";
         this.DefaultCard.validYear = "YY";
       }
+      this.$root.addCard(this.DefaultCard);
+      this.$router.push("/");
     },
+    preview() {
+      this.DefaultCard.number = this.$refs.form.cardNumber.value;
+      this.DefaultCard.holder = this.$refs.form.cardholderName.value;
+      this.DefaultCard.validMonth = this.$refs.form.validMonth.value;
+      this.DefaultCard.validYear = this.$refs.form.validYear.value;
+      this.DefaultCard.img = this.$refs.form.vendor.value;
+      if (this.$refs.form.vendor.value == "bitcoin") {
+        this.DefaultCard.bgColor = "#F9B449";
+        this.DefaultCard.textColor = "#2c3e50";
+      }
+      if (this.$refs.form.vendor.value == "evil") {
+        this.DefaultCard.bgColor = "#DF2E4C";
+        this.DefaultCard.textColor = "#ECE6DF";
+      }
+      if (this.$refs.form.vendor.value == "blockchain") {
+        this.DefaultCard.bgColor = "#8050E5";
+        this.DefaultCard.textColor = "#ECE6DF";
+      }
+      if (this.$refs.form.vendor.value == "ninja") {
+        this.DefaultCard.bgColor = "#3A3A3A";
+        this.DefaultCard.textColor = "#ECE6DF";
+      }
+      if (
+        this.$refs.form.cardNumber.value.length == 0 ||
+        this.$refs.form.cardholderName.value.length == 0 ||
+        this.$refs.form.validYear.length == 0 ||
+        this.$refs.form.validMonth.length == 0
+      ) {
+        alert("Please fill all input");
+        this.DefaultCard.number = "XXXX XXXX XXXX XXXX";
+        this.DefaultCard.holder = "firstname lastname";
+        this.DefaultCard.vendor = "bitcoin";
+        this.DefaultCard.bgColor = "#D8D8D8";
+        this.DefaultCard.validMonth = "MM";
+        this.DefaultCard.validYear = "YY";
+      }
+    },
+    // test2() {
+    //   this.$root.addCard(this.DefaultCard);
+    //   this.$router.push("/");
+    // },
   },
 };
 </script>

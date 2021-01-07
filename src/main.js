@@ -58,6 +58,11 @@ new Vue({
          ],
       };
    },
+   methods: {
+      addCard(info) {
+         this.Cards.push(info);
+      },
+   },
    router,
    render: (h) => h(App),
 }).$mount("#app");
