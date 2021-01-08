@@ -11,7 +11,6 @@
         </div>
       </article>
       <article class="card-stack">
-        <!-- <CardStack :card="Cards[this.position]" /> -->
         <Card
           v-for="(card, index) in Cards"
           :key="index"
@@ -31,7 +30,6 @@
 <script>
 import Top from "../components/Top";
 import Card from "../components/Card";
-// import CardStack from "../components/CardStack";
 export default {
   data() {
     return {
@@ -44,8 +42,6 @@ export default {
       console.log("test");
     },
     actived(index) {
-      // localStorage.setItem("position", index);
-      // this.$router.go(0);
       this.position = index;
       console.log(this.position);
     },
@@ -53,7 +49,6 @@ export default {
   components: {
     Top,
     Card,
-    // CardStack,
   },
   computed: {
     Cards() {

@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <router-link to="/" class="back"
+      ><font-awesome-icon icon="arrow-circle-left"
+    /></router-link>
     <header>
       <Top :title="FormTitle" />
     </header>
@@ -8,7 +11,6 @@
         <Card :card="DefaultCard" />
       </section>
       <section class="add-card-form">
-        <!-- <Form /> -->
         <form class="submit-card" @submit.prevent="send" ref="form">
           <label for="cardNumber">card number</label>
           <the-mask
@@ -66,7 +68,6 @@
         </form>
         <button class="preview-btn" @click="preview">PREVIEW CARD</button>
       </section>
-      <router-link to="/">back</router-link>
     </main>
   </div>
 </template>
@@ -74,12 +75,10 @@
 <script>
 import Top from "../components/Top";
 import Card from "../components/Card";
-// import Form from "../components/CardForm";
 export default {
   components: {
     Card,
     Top,
-    // Form,
   },
   props: {
     title: String,
@@ -101,11 +100,6 @@ export default {
       },
     };
   },
-  // beforeCreate() {
-  //   let number = "XXXXXXXXXXXXXXXX";
-  //   let split = number.match(/.{1,4}/g);
-  //   this.str = split.join(" ");
-  // },
   methods: {
     send() {
       this.DefaultCard.number = this.$refs.form.cardNumber.value;
@@ -183,10 +177,6 @@ export default {
         this.DefaultCard.validYear = "YY";
       }
     },
-    // test2() {
-    //   this.$root.addCard(this.DefaultCard);
-    //   this.$router.push("/");
-    // },
   },
 };
 </script>
@@ -279,6 +269,11 @@ export default {
       color: black;
       border: 1px solid #000;
     }
+  }
+  .back {
+    float: left;
+    font-size: 2rem;
+    color: black;
   }
 }
 </style>

@@ -40,12 +40,6 @@
 
 <script>
 export default {
-  // data() {
-  //   return {
-  //     img: this.card.img,
-  //     cardNumber: this.card.number,
-  //   };
-  // },
   props: {
     card: Object,
   },
