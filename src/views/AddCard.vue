@@ -120,7 +120,7 @@ export default {
         this.DefaultCard.textColor = "#ECE6DF";
       }
       if (this.$refs.form.vendor.value == "ninja") {
-        this.DefaultCard.bgColor = "#3F3F3F";
+        this.DefaultCard.bgColor = "#3A3A3A";
         this.DefaultCard.textColor = "#ECE6DF";
       }
       if (
