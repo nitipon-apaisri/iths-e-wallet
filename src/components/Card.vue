@@ -96,4 +96,7 @@ section.card {
     }
   }
 }
+.card::-webkit-scrollbar {
+  display: none;
+}
 </style>
