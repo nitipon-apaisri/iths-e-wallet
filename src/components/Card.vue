@@ -13,7 +13,7 @@
       />
     </div>
     <div class="middle-card">
-      <h2 :style="{ color: card.textColor }">{{ card.number }}</h2>
+      <h2 :style="{ color: card.textColor }">{{ reformNumber }}</h2>
     </div>
     <div class="bottom-card">
       <div class="cardholder-name">
@@ -43,11 +43,27 @@ export default {
   props: {
     card: Object,
   },
+  computed: {
+    reformNumber() {
+      let reformNumber = "";
+      if (this.card.number) {
+        for (let i = 0; i < this.card.number.length; i++) {
+          if (i % 4 === 0) {
+            reformNumber = reformNumber + " " + this.card.number[i];
+          } else {
+            reformNumber += this.card.number[i];
+          }
+        }
+      }
+      return reformNumber;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 section.card {
+  border: 1px solid #ebebeb;
   cursor: pointer;
   padding: 18px;
   border-radius: 10px;
